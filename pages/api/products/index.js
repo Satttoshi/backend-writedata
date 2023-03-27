@@ -11,9 +11,11 @@ export default async function handler(request, response) {
   if (request.method === "POST") {
     try {
       const product = await Product(request.body).save();
-      return response.status(201).json({ status: "ok", product });
+      return response
+        .status(201)
+        .json({ status: "ok, product created: ", product });
     } catch (error) {
-      return response.status(500).json({ status: "error", error });
+      return response.status(400).json({ status: "error", error });
     }
   }
 }
